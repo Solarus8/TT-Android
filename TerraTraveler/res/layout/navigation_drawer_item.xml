@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@android:color/white"
+     >
+    
+    <ImageView 
+        android:src="@drawable/default_female_user_img"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:scaleType="centerCrop"
+        android:id="@+id/menu_card_iv"
+        />
+    
+    <TextView 
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="Navigate To The Dojo"
+        android:id="@+id/menu_card_tv"
+        android:textSize="20sp"
+        android:textColor="@android:color/black"
+        android:padding="5dp"
+        />
+    
+
+</LinearLayout>
