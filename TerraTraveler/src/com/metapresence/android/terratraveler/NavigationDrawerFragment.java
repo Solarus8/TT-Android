@@ -2,16 +2,16 @@ package com.metapresence.android.terratraveler;
 
 import java.util.ArrayList;
 
-import android.app.Activity;
 import android.app.ActionBar;
+import android.app.Activity;
 import android.app.Fragment;
-import android.support.v4.app.ActionBarDrawerToggle;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -19,7 +19,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -101,17 +100,9 @@ public class NavigationDrawerFragment extends Fragment {
         });
         
         ArrayList<String> testList = new ArrayList<String>();
-        testList.add("hello");
-        testList.add("hello");
-        testList.add("hello");
-        testList.add("hello");
+        testList.add("Create Event");
+        testList.add("Test API Calls");
         
-//        mDrawerListView.setAdapter(new ArrayAdapter<String>(getActionBar().getThemedContext(), android.R.layout.simple_list_item_activated_1, android.R.id.text1,
-//                new String[]{
-//                        getString(R.string.title_section1),
-//                        getString(R.string.title_section2),
-//                        getString(R.string.title_section3),
-//                }));
         CustomListAdapter adapter = new CustomListAdapter(testList);
         mDrawerListView.setAdapter(adapter);
         mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
@@ -152,6 +143,11 @@ public class NavigationDrawerFragment extends Fragment {
 			LayoutInflater inflater = getActivity().getLayoutInflater();
 			View row;
 			row = inflater.inflate(R.layout.navigation_drawer_item, parent, false);
+			
+			TextView title = (TextView) row.findViewById(R.id.menu_card_tv);
+			title.setText(mTitles.get(position));
+			
+			ImageView imageView = (ImageView) row.findViewById(R.id.menu_card_iv);
 			
 			
 			return row;

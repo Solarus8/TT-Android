@@ -9,7 +9,7 @@
     <ImageView 
         android:src="@drawable/default_female_user_img"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="75dp"
         android:scaleType="centerCrop"
         android:id="@+id/menu_card_iv"
         />
@@ -18,7 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:text="Navigate To The Dojo"
+        android:text="Add Event"
         android:id="@+id/menu_card_tv"
         android:textSize="20sp"
         android:textColor="@android:color/black"
