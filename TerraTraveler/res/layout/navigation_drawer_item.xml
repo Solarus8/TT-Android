@@ -23,6 +23,7 @@
         android:textSize="20sp"
         android:textColor="@android:color/black"
         android:padding="5dp"
+        android:background="#F2F2F2"
         />
     
 

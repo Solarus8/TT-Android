@@ -22,7 +22,7 @@ public class APICall extends AsyncTask<Object, String, String>{
 
 	private static String BASE_URL = "http://ec2-54-193-80-119.us-west-1.compute.amazonaws.com:9000/api/v1";
 	private String mURL;
-	APIName mAPIName;
+	private APIName mAPIName;
 	private String TAG = "APICALL";
 	private APICallback mCallback;
 
@@ -48,38 +48,68 @@ public class APICall extends AsyncTask<Object, String, String>{
 		
 		
 		switch (mAPIName) {
+		
+		case ASSOCIATE_USER_AND_EVENT:
+			break;
+		
+		case ASSOCIATE_USER_TO_CONTACT:
+			break;
 
 		case CREATE_EVENT:
-			return createEvent();
+			return createEvent((String) params[0], (String) params[1], (Integer) params[2], (String) params[3], (String) params[4], (Integer) params[5], (Integer) params[6], (String) params[7], (String) params[8], (Integer) params[9]);
 			
 		case CREATE_PLACE:
-			return createPlace();
+			return createPlace((String) params[0], (String) params[1], (String) params[2], (String) params[3], (Double) params[4], (Double) params[5] );
+			
+		case CREATE_PLACE_BY_3RD_PARTY_REF:
+			break;
 			
 		case CREATE_USER:
-			break;
+			return createUser((String) params[0], (String) params[1], (String) params[2], (String) params[3], (Double) params[4], (Double) params[5]);
 			
 		case CREATE_USER_PROFILE:
 			break;
 			
+		case GET_ALL_ACTIVITY_CATEGORIES_AND_TYPES:
+			break;
+			
 		case GET_ALL_USERS:
 			return getAllUsers();
+			
+		case GET_EVENT_BY_ID:
+			break;
 
 		case GET_EVENTS_BY_LATITUDE_LONGITUDE_RADIUS:
 			return getEventByLatLongRad((Double) params[0], (Double) params[1], (Integer) params[2]);			
-			
+				
 		case GET_EVENTS_BY_LOCATION_RADIUS_USING_LOCATION_ID:
 			break;
 			
 		case GET_EVENTS_BY_USER_ID:
 			break;
 			
-		case GET_EVENT_BY_ID:
+		case GET_PLACE_3RD_PARTY_REF_BY_ID:
+			break;
+			
+		case GET_PLACE_3RD_PARTY_REF_BY_TT_PLACE_ID:
+			break;
+			
+		case GET_PLACE_BY_ID:
+			break;
+			
+		case GET_PLACES_BY_LATITUDE_LONGITUDE_RADIUS:
 			break;
 			
 		case GET_USER_BY_ID:
+			return getUserById((Integer) params[0]);
+			
+		case GET_USER_CONTACTS_BY_USER_ID:
 			break;
 			
 		case GET_USER_PROFILE:
+			break;
+			
+		case GET_USERS_BY_EVENT_ID:
 			break;
 			
 		default:
@@ -89,6 +119,34 @@ public class APICall extends AsyncTask<Object, String, String>{
 		return null;
 	}
 	
+	private String createUser(String userName, String email, String password, String role, Double latitude, Double longitude) {
+		mURL = BASE_URL + "/users";
+		
+		JSONObject jsonObject = new JSONObject();
+		
+		try {
+			jsonObject.put("userName", userName);
+			jsonObject.put("email", email);
+			jsonObject.put("password", password);
+			jsonObject.put("role", role);
+			jsonObject.put("latitude", latitude);
+			jsonObject.put("longitude", longitude);
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		
+		return postData(jsonObject);
+	}
+
+
+	private String getUserById(int userId) {
+		// TODO Auto-generated method stub
+		mURL = BASE_URL + "/users/" + userId;
+		String response = getData();
+		return response;
+	}
+
+
 	@Override
 	protected void onPostExecute(String result) {
 
@@ -106,18 +164,25 @@ public class APICall extends AsyncTask<Object, String, String>{
 		
 	}
 	
-	public String createEvent() {
-		mURL = BASE_URL + "events";
+	
+	
+	
+	public String createEvent(String from, String to, int placeId, String title, String description, int minSize, int maxSize, String rsvpTot, String waitListTot, int activityType) {
+		mURL = BASE_URL + "/events";
+		
 		JSONObject jsonObject = new JSONObject();
 		try {
-			jsonObject.put("from", "2014-02-23 10:30:00.0");
-			jsonObject.put("to", "");
-			jsonObject.put("placeId", 1);
-			jsonObject.put("desc", "Outside Lands: best music festival in S.F.");
-			jsonObject.put("minSize", 2);
-			jsonObject.put("maxSize", 50);
-			jsonObject.put("rsvpTot", "");
-			jsonObject.put("waitListTot", "");
+			jsonObject.put("from", from);
+			jsonObject.put("to", to);
+			jsonObject.put("placeId", placeId);
+			jsonObject.put("title", title);
+			jsonObject.put("desc", description);
+			jsonObject.put("minSize", minSize);
+			jsonObject.put("maxSize", maxSize);
+			jsonObject.put("rsvpTot", rsvpTot);
+			jsonObject.put("waitListTot", waitListTot);
+			jsonObject.put("activityType", activityType);
+			
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -132,18 +197,18 @@ public class APICall extends AsyncTask<Object, String, String>{
 		return response;
 		
 	}
-
-	public String createPlace() {
+	
+	public String createPlace(String name, String description, String category, String url, double latitude, double longitude) {
 		mURL = BASE_URL + "/locations/place";
 		JSONObject jsonObject = new JSONObject();
 		
 		try {
-			jsonObject.put("name", "Stern Grove");
-			jsonObject.put("desc", "Free Summer Concerts!");
-			jsonObject.put("cat", "PARK");
-			jsonObject.put("url", "http://www.sterngrove.org/");
-			jsonObject.put("latitude", 37.735681);
-			jsonObject.put("longitude", -122.476959);
+			jsonObject.put("name", name);
+			jsonObject.put("desc", description);
+			jsonObject.put("cat", category);
+			jsonObject.put("url", url);
+			jsonObject.put("latitude", latitude);
+			jsonObject.put("longitude", longitude);
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}

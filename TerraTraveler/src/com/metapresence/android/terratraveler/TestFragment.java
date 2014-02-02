@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.metapresence.android.terratraveler.api.APICall;
 import com.metapresence.android.terratraveler.api.APICallback;
@@ -49,8 +50,7 @@ public class TestFragment extends Fragment implements OnClickListener, APICallba
 		buttons.add(getAllUsersButton);
 		buttons.add(createPlaceButton);
 		buttons.add(getEventsByLatLongRadButton);
-		
-		
+				
 		//add listeners and modify buttons
 		for (Button button : buttons) {
 			button.setOnClickListener(this);
@@ -104,7 +104,7 @@ public class TestFragment extends Fragment implements OnClickListener, APICallba
 
 		case (R.id.test_create_place):
 			apiCall = new APICall(APIName.CREATE_PLACE, this);
-			apiCall.execute();
+//			apiCall.execute();
 			break;
 
 		}
@@ -114,7 +114,7 @@ public class TestFragment extends Fragment implements OnClickListener, APICallba
 	@Override
 	public void onAsyncTaskComplete(JSONObject jsonObject) {
 		// TODO Auto-generated method stub
-		
+		Toast.makeText(getActivity(), jsonObject.toString(), Toast.LENGTH_LONG).show();;
 	}
 
 }

@@ -1,7 +1,5 @@
 package com.metapresence.android.terratraveler;
 
-import java.util.ArrayList;
-
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Fragment;
@@ -31,6 +29,8 @@ import android.widget.Toast;
  * design guidelines</a> for a complete explanation of the behaviors implemented here.
  */
 public class NavigationDrawerFragment extends Fragment {
+	
+
 
     /**
      * Remember the position of the selected item.
@@ -60,6 +60,10 @@ public class NavigationDrawerFragment extends Fragment {
     private int mCurrentSelectedPosition = 0;
     private boolean mFromSavedInstanceState;
     private boolean mUserLearnedDrawer;
+    
+    private final String[] mNavDrawerListTitles = {"Create Event", "Test API Calls", "Find Users"};
+    private final int[] mNavDrawerListPhotos = {R.drawable.plus, R.drawable.demo_button, R.drawable.friends};
+    
 
     public NavigationDrawerFragment() {
     }
@@ -79,7 +83,7 @@ public class NavigationDrawerFragment extends Fragment {
         }
 
         // Select either the default item (0) or the last selected item.
-        selectItem(mCurrentSelectedPosition);
+        //selectItem(mCurrentSelectedPosition);
     }
 
     @Override
@@ -99,11 +103,8 @@ public class NavigationDrawerFragment extends Fragment {
             }
         });
         
-        ArrayList<String> testList = new ArrayList<String>();
-        testList.add("Create Event");
-        testList.add("Test API Calls");
         
-        CustomListAdapter adapter = new CustomListAdapter(testList);
+        CustomListAdapter adapter = new CustomListAdapter(mNavDrawerListTitles, mNavDrawerListPhotos);
         mDrawerListView.setAdapter(adapter);
         mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
         return mDrawerListView;
@@ -111,24 +112,24 @@ public class NavigationDrawerFragment extends Fragment {
     
     public class CustomListAdapter extends BaseAdapter {
     	
-    	ArrayList<String> mTitles;
-    	ArrayList<ImageView> mImageViews;
+    	String[] mTitles;
+    	int[] mImageViews;
     	
-    	public CustomListAdapter(ArrayList<String> titles) {
+    	public CustomListAdapter(String[] titles, int[] imageViews) {
     		mTitles = titles;
-    		
+    		mImageViews = imageViews;    		
     	}
 
 		@Override
 		public int getCount() {
 			// TODO Auto-generated method stub
-			return mTitles.size();
+			return mTitles.length;
 		}
 
 		@Override
 		public Object getItem(int position) {
 			// TODO Auto-generated method stub
-			return mTitles.get(position);
+			return mTitles[position];
 		}
 
 		@Override
@@ -145,10 +146,10 @@ public class NavigationDrawerFragment extends Fragment {
 			row = inflater.inflate(R.layout.navigation_drawer_item, parent, false);
 			
 			TextView title = (TextView) row.findViewById(R.id.menu_card_tv);
-			title.setText(mTitles.get(position));
+			title.setText(mTitles[position]);
 			
 			ImageView imageView = (ImageView) row.findViewById(R.id.menu_card_iv);
-			
+			imageView.setImageResource(mImageViews[position]);		
 			
 			return row;
 		}
@@ -219,9 +220,9 @@ public class NavigationDrawerFragment extends Fragment {
 
         // If the user hasn't 'learned' about the drawer, open it to introduce them to the drawer,
         // per the navigation drawer design guidelines.
-        if (!mUserLearnedDrawer && !mFromSavedInstanceState) {
-            mDrawerLayout.openDrawer(mFragmentContainerView);
-        }
+//        if (!mUserLearnedDrawer && !mFromSavedInstanceState) {
+//            mDrawerLayout.openDrawer(mFragmentContainerView);
+//        }
 
         // Defer code dependent on restoration of previous instance state.
         mDrawerLayout.post(new Runnable() {

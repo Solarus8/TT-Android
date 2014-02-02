@@ -4,10 +4,14 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
+
+import com.metapresence.android.terratraveler.event.CreateEventActivity;
 
 public class MainActivity extends Activity implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
@@ -31,13 +35,14 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		
 
 		mNavigationDrawerFragment = (NavigationDrawerFragment) getFragmentManager().findFragmentById(R.id.navigation_drawer);
 		mTitle = getTitle();
 
 		// Set up the drawer.
 		mNavigationDrawerFragment.setUp(R.id.navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout));
+		
+		getFragmentManager().beginTransaction().replace(R.id.container, new CustomMapFragment()).commit();
 	}
 
 	@Override
@@ -48,13 +53,20 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
 		
 		switch (position) {
 		
-		case 0:
-			fragment = new CustomMapFragment();
-			fragmentManager.beginTransaction().replace(R.id.container, fragment).commit();
+		case 0: //Create Event
+//			fragment = new CustomMapFragment();
+//			fragment.setRetainInstance(true);
+//			fragmentManager.beginTransaction().replace(R.id.container, fragment).commit();
+			Intent intent = new Intent(this, CreateEventActivity.class);
+			startActivity(intent);
 			break;
-		case 1:
+		case 1: //API Call
 			fragment = new TestFragment();
 			fragmentManager.beginTransaction().replace(R.id.container, fragment).commit();
+			break;
+			
+		case 2:
+			Toast.makeText(this, "Item 2 Clicked", Toast.LENGTH_LONG).show();
 			break;
 		}
 		
