@@ -54,9 +54,6 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
 		switch (position) {
 		
 		case 0: //Create Event
-//			fragment = new CustomMapFragment();
-//			fragment.setRetainInstance(true);
-//			fragmentManager.beginTransaction().replace(R.id.container, fragment).commit();
 			Intent intent = new Intent(this, CreateEventActivity.class);
 			startActivity(intent);
 			break;

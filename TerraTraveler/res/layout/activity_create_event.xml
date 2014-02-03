@@ -9,7 +9,7 @@
     tools:context=".CreateEventActivity" >
 
     <EditText
-        android:id="@+id/editText1"
+        android:id="@+id/create_event_title_et"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -21,23 +21,6 @@
         <requestFocus />
     </EditText>
 
-    <ImageView
-        android:id="@+id/imageView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/editText1"
-        android:layout_marginTop="100dp"
-        android:src="@drawable/beachflag" />
-
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/imageView1"
-        android:layout_alignParentRight="true"
-        android:src="@drawable/china" />
-
     <Button
         android:id="@+id/create_event_button"
         android:layout_width="wrap_content"
@@ -45,5 +28,22 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:text="Create Event" />
+
+    <ImageView
+        android:id="@+id/create_event_activity_type_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/create_event_title_et"
+        android:layout_marginTop="50dp"
+        android:src="@drawable/beachflag" />
+
+    <ImageView
+        android:id="@+id/create_event_location_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/create_event_activity_type_iv"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/china" />
 
 </RelativeLayout>

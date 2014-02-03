@@ -52,6 +52,7 @@ public class CustomMapFragment extends MapFragment implements APICallback {
 	
 	public final static String SELECTED_LATITUDE = "selected_latitude";
 	public final static String SELECTED_LONGITUDE = "selected_longitude";
+	public final static String SELECTED_RADIUS = "selected_radius";
 	
 	
 	
@@ -106,6 +107,7 @@ public class CustomMapFragment extends MapFragment implements APICallback {
 					Intent intent = new Intent(getActivity(), CreateEventActivity.class);
 					intent.putExtra(SELECTED_LATITUDE, marker.getPosition().latitude);
 					intent.putExtra(SELECTED_LONGITUDE, marker.getPosition().longitude);
+					intent.putExtra(SELECTED_RADIUS, prev_rad);
 					startActivity(intent);
 				}
 			}

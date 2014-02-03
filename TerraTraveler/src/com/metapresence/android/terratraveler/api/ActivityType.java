@@ -11,6 +11,7 @@ public enum ActivityType {
 	DOG_PARK(7),
 	CHILD_PARK(8),
 	SITE_SEE(9),
+	DRINKS(10),
 	EVENT(23);
 
 
