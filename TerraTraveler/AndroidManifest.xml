@@ -18,7 +18,7 @@
 
     <uses-sdk
         android:minSdkVersion="14"
-        android:targetSdkVersion="18" />
+        android:targetSdkVersion="19" />
 
     <application
         android:allowBackup="true"
@@ -38,7 +38,7 @@
 
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
-            android:value="AIzaSyAQJH8uyl9_pvVTvMWwnm5e6Lax1kvZgL0" />
+            android:value="AIzaSyA8dg2ua3l9EAM_-4GzTBzRwAz3skAD1vA" />
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
