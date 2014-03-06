@@ -230,11 +230,15 @@ public class CustomMapFragment extends MapFragment implements APICallback {
 		  Criteria crit = new Criteria();
 		  Location loc = locMan.getLastKnownLocation(locMan.getBestProvider(crit, false));
 
-		  CameraPosition camPos = new CameraPosition.Builder().target(new LatLng(loc.getLatitude(), loc.getLongitude())).zoom(12.8f).build();
-		  CameraUpdate camUpdate = CameraUpdateFactory.newCameraPosition(camPos);
-		  getMap().moveCamera(camUpdate);		  
-
-		 }
+		  if(loc != null) {
+			  CameraPosition camPos = new CameraPosition.Builder().target(new LatLng(loc.getLatitude(), loc.getLongitude())).zoom(12.8f).build();
+			  CameraUpdate camUpdate = CameraUpdateFactory.newCameraPosition(camPos);
+			  getMap().moveCamera(camUpdate);		  
+		  }
+		  else {
+			  Log.d("CustomMapFragment.moveMapToMyLocation", "Location is NULL");
+		  }
+	}
 
 
 

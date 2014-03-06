@@ -105,8 +105,7 @@ public class CreateEventActivity extends Activity implements OnClickListener {
 		}
 
 	@Override
-	public void onClick(View v) {
-		// TODO Auto-generated method stub
+	public void onClick(View v) { // ############## STUB STUB STUB STUB ############
 		
 		switch (v.getId()) {
 		case R.id.create_event_button:
@@ -183,8 +182,6 @@ public class CreateEventActivity extends Activity implements OnClickListener {
 
 	public Dialog onCreateLocationDialog() {
 		
-
-		
 	    AlertDialog.Builder builder = new AlertDialog.Builder(this);
 	    builder.setTitle("Pick Location")
 	           .setItems(mLocations, new DialogInterface.OnClickListener() {
@@ -200,11 +197,11 @@ public class CreateEventActivity extends Activity implements OnClickListener {
 		
 	    AlertDialog.Builder builder = new AlertDialog.Builder(this);
 	    builder.setTitle("Pick Activity Type")
-	           .setItems(mLocations, new DialogInterface.OnClickListener() {
-	               public void onClick(DialogInterface dialog, int which) {
-	               // The 'which' argument contains the index position
-	               // of the selected item
-	           }
+           .setItems(mLocations, new DialogInterface.OnClickListener() {
+               public void onClick(DialogInterface dialog, int which) {
+               // The 'which' argument contains the index position
+               // of the selected item
+           }
 	    });
 	    return builder.create();
 	}

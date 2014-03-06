@@ -311,16 +311,12 @@ public class APICall extends AsyncTask<Object, String, String>{
 
 		JSONObject jsonObject = null;
 		
-		
 		try {
 			jsonObject = new JSONObject(result);
 			mCallback.onAsyncTaskComplete(jsonObject);
 		} catch (JSONException e) {
 			e.printStackTrace();
-		}
-		
-
-		
+		}		
 	}
 	
 	

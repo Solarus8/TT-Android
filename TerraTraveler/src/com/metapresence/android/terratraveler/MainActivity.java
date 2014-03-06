@@ -67,7 +67,6 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
 			break;
 		}
 		
-
 	}
 
 	public void onSectionAttached(int number) {
