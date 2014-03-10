@@ -58,8 +58,6 @@ public class CustomMapFragment extends MapFragment implements APICallback {
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
-
 		return super.onCreateView(inflater, container, savedInstanceState);
 	}
 	
@@ -67,12 +65,10 @@ public class CustomMapFragment extends MapFragment implements APICallback {
 	public void onActivityCreated(Bundle savedInstanceState) {
 		
 		setRetainInstance(true);
-		// TODO Auto-generated method stub
 		mGoogleMap = getMap();
 		mGoogleMap.setMyLocationEnabled(true);
 		
 		moveMapToMyLocation();
-		
 		
 		mPlaceMarkers = new ArrayList<Marker>();
 		
@@ -82,7 +78,6 @@ public class CustomMapFragment extends MapFragment implements APICallback {
 		prev_lon = 0;
 		prev_rad = 0;
 		mMarkerClickToggle = false;
-		
 		
 		mGoogleMap.setOnMapLongClickListener(new OnMapLongClickListener() {
 			
@@ -96,7 +91,6 @@ public class CustomMapFragment extends MapFragment implements APICallback {
 				mSelectMarker.showInfoWindow();
 			}
 		});
-		
 		
 		mGoogleMap.setOnInfoWindowClickListener(new OnInfoWindowClickListener() {
 			
@@ -122,7 +116,6 @@ public class CustomMapFragment extends MapFragment implements APICallback {
 				VisibleRegion visibleRegion = projection.getVisibleRegion();
 				LatLngBounds latLngBounds = visibleRegion.latLngBounds;
 				
-				
 				double northEastLat = latLngBounds.northeast.latitude;
 				double northEastLong = latLngBounds.northeast.longitude;
 				
@@ -138,7 +131,6 @@ public class CustomMapFragment extends MapFragment implements APICallback {
 				double longitude = position.target.longitude;
 				int radius = (int) (radius_result[0]/2); // in meters
 				
-				
 				float[] movement_amount = new float[1];
 				//calculate distance between camera movements to ensure the camera has moved passed certain threshold before retrigger of APICall
 				Location.distanceBetween(prev_lat, prev_lon, latitude, longitude, movement_amount);
@@ -150,40 +142,32 @@ public class CustomMapFragment extends MapFragment implements APICallback {
 				Log.d("RADIUS DELTA", String.valueOf(radius_delta));
 				
 				if (movement_amount[0] > radius || Math.abs(prev_rad - radius) > 5) {
-				prev_lat = latitude;
-				prev_lon = longitude;
-				prev_rad = radius;
-								
-				if (!mMarkerClickToggle) {
-				apiCall = new APICall(APIName.GET_EVENTS_BY_LATITUDE_LONGITUDE_RADIUS, callback);
-				apiCall.execute(latitude, longitude, radius);
-				}
-				
-				mMarkerClickToggle = false;
+					prev_lat = latitude;
+					prev_lon = longitude;
+					prev_rad = radius;
+									
+					if (!mMarkerClickToggle) {
+						apiCall = new APICall(APIName.GET_EVENTS_BY_LATITUDE_LONGITUDE_RADIUS, callback);
+						apiCall.execute(latitude, longitude, radius);
+					}
+					
+					mMarkerClickToggle = false;
 				}
 				
 			}
 
 		});
 		
-		
 		super.onActivityCreated(savedInstanceState);
 	}
 
-
-
 	@Override
 	public void onResume() {
-		
 		super.onResume();
 	}
 
-
-
-
 	@Override
 	public void onAsyncTaskComplete(JSONObject jsonObject) {	
-
 		
 		Log.d("ASYNCTASKCOMPLETE", "ASYNCTASKCOMPLETE METHOD");
 		Log.d("JSON OBJECT IN MAPS FRAGMENT" , jsonObject.toString());
@@ -202,7 +186,6 @@ public class CustomMapFragment extends MapFragment implements APICallback {
 				double pinLongitude = pinJSONObject.getDouble("lon");
 				String pinTitle = pinJSONObject.getString("title");
 				
-				
 				Marker marker = mGoogleMap.addMarker(new MarkerOptions().position(new LatLng(pinLatitude, pinLongitude)).title(pinTitle));
 				mPlaceMarkers.add(marker);
 				
@@ -213,14 +196,11 @@ public class CustomMapFragment extends MapFragment implements APICallback {
 						return false;
 					}
 				});
-				
 			}
-			
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 	}
 	
 	private void moveMapToMyLocation() {
@@ -239,7 +219,4 @@ public class CustomMapFragment extends MapFragment implements APICallback {
 			  Log.d("CustomMapFragment.moveMapToMyLocation", "Location is NULL");
 		  }
 	}
-
-
-
 }

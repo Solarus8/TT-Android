@@ -42,6 +42,7 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
 		// Set up the drawer.
 		mNavigationDrawerFragment.setUp(R.id.navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout));
 		
+		// rw: This doesn't make sense to me. I think beginTransaction should go in 
 		getFragmentManager().beginTransaction().replace(R.id.container, new CustomMapFragment()).commit();
 	}
 
