@@ -225,16 +225,18 @@ public class CustomMapFragment extends MapFragment implements APICallback {
 	
 	private void moveMapToMyLocation() {
 
-		  LocationManager locMan = (LocationManager)getActivity().getSystemService(Context.LOCATION_SERVICE);
+		LocationManager locMan = (LocationManager)getActivity().getSystemService(Context.LOCATION_SERVICE);
 
-		  Criteria crit = new Criteria();
-		  Location loc = locMan.getLastKnownLocation(locMan.getBestProvider(crit, false));
+		Criteria crit = new Criteria();
+		Location loc = locMan.getLastKnownLocation(locMan.getBestProvider(crit, false));
 
-		  CameraPosition camPos = new CameraPosition.Builder().target(new LatLng(loc.getLatitude(), loc.getLongitude())).zoom(12.8f).build();
-		  CameraUpdate camUpdate = CameraUpdateFactory.newCameraPosition(camPos);
-		  getMap().moveCamera(camUpdate);		  
-
-		 }
+		// TODO: This needs to be researched and corrected as to how to get the loc if it fails to do so...
+		if(loc != null) {
+			CameraPosition camPos = new CameraPosition.Builder().target(new LatLng(loc.getLatitude(), loc.getLongitude())).zoom(12.8f).build();
+			CameraUpdate camUpdate = CameraUpdateFactory.newCameraPosition(camPos);
+			getMap().moveCamera(camUpdate);
+		}
+	}
 
 
 
