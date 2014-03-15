@@ -30,11 +30,9 @@ public class APICall extends AsyncTask<Object, String, String>{
 		return mURL;
 	}
 
-
 	public void setURL(String URL) {
 		this.mURL = URL;
 	}
-
 
 	public APICall(APIName apiName, APICallback callback) {
 		mAPIName = apiName;
@@ -47,81 +45,79 @@ public class APICall extends AsyncTask<Object, String, String>{
 		mCallback = callback;
 	}
 
-
 	@Override
 	protected String doInBackground(Object... params) {
 		
-		
 		switch (mAPIName) {
 		
-		case ASSOCIATE_USER_AND_EVENT:  //assume UserId is first, eventId second in JSON
-			return associateUserAndEvent((Integer) params[0], (Integer) params[1]);
-		
-		case ASSOCIATE_USER_TO_CONTACT: //assume UserId is first, contactId second in JSON
-			return associateUserToContact((Integer) params[0], (Integer) params[1]);
-
-		case CREATE_EVENT:
-			return createEvent((String) params[0], (String) params[1], (Integer) params[2], (String) params[3], (String) params[4], (Integer) params[5], (Integer) params[6], (String) params[7], (String) params[8], (Integer) params[9]);
+			case ASSOCIATE_USER_AND_EVENT:  //assume UserId is first, eventId second in JSON
+				return associateUserAndEvent((Integer) params[0], (Integer) params[1]);
 			
-		case CREATE_PLACE:
-			return createPlace((String) params[0], (String) params[1], (String) params[2], (String) params[3], (Double) params[4], (Double) params[5]);
-			
-		case CREATE_PLACE_BY_3RD_PARTY_REF:
-			return createPlaceBy3rdPartyRef((Integer) params[0], (Integer) params[1], (String) params[2], (String) params[3]);
-			
-		case CREATE_USER:
-			return createUser((String) params[0], (String) params[1], (String) params[2], (String) params[3], (Double) params[4], (Double) params[5]);
-			
-		case CREATE_USER_PROFILE:
-			return createUserProfile((Integer) params[0], (String) params[1], (String) params[2], (String) params[3], (String) params[4], (String) params[5], (String) params[6], (String) params[7], (String) params[8]);
-			
-		case GENERIC_GET:
-			return genericGet();
-		
-		case GET_ALL_ACTIVITY_CATEGORIES_AND_TYPES:
-			return getAllActivitiesCatType();
-			
-		case GET_ALL_USERS:
-			return getAllUsers();
-			
-		case GET_EVENT_BY_ID:
-			return getEventByID((Integer) params[0]);
-
-		case GET_EVENTS_BY_LATITUDE_LONGITUDE_RADIUS:
-			return getEventByLatLongRad((Double) params[0], (Double) params[1], (Integer) params[2]);			
+			case ASSOCIATE_USER_TO_CONTACT: //assume UserId is first, contactId second in JSON
+				return associateUserToContact((Integer) params[0], (Integer) params[1]);
+	
+			case CREATE_EVENT:
+				return createEvent((String) params[0], (String) params[1], (Integer) params[2], (String) params[3], (String) params[4], (Integer) params[5], (Integer) params[6], (String) params[7], (String) params[8], (Integer) params[9]);
 				
-		case GET_EVENTS_BY_LOCATION_RADIUS_USING_LOCATION_ID:  //takes LocId and Radius (meters) and returns Events
-			return getEventByLocationRadiusUsingLocationID((Integer) params[0], (Integer) params[1]);
+			case CREATE_PLACE:
+				return createPlace((String) params[0], (String) params[1], (String) params[2], (String) params[3], (Double) params[4], (Double) params[5]);
+				
+			case CREATE_PLACE_BY_3RD_PARTY_REF:
+				return createPlaceBy3rdPartyRef((Integer) params[0], (Integer) params[1], (String) params[2], (String) params[3]);
+				
+			case CREATE_USER:
+				return createUser((String) params[0], (String) params[1], (String) params[2], (String) params[3], (Double) params[4], (Double) params[5]);
+				
+			case CREATE_USER_PROFILE:
+				return createUserProfile((Integer) params[0], (String) params[1], (String) params[2], (String) params[3], (String) params[4], (String) params[5], (String) params[6], (String) params[7], (String) params[8]);
+				
+			case GENERIC_GET:
+				return genericGet();
 			
-		case GET_EVENTS_BY_USER_ID:
-			return getEventsByUserID((Integer) params[0]);
-			
-		case GET_PLACE_3RD_PARTY_REF_BY_ID:
-			return getPlace3rdPartyRefByID((Integer) params[0]);
-			
-		case GET_PLACE_3RD_PARTY_REF_BY_TT_PLACE_ID:
-			return getPlace3rdPartyRefByTTPlaceID((Integer) params[0]);
-			
-		case GET_PLACE_BY_ID:
-			return getPlaceByID((Integer) params[0]);
-			
-		case GET_PLACES_BY_LATITUDE_LONGITUDE_RADIUS:
-			return getPlacesByLatitudeLongitudeRadius((Double) params[0], (Double) params[1], (Integer) params[2]);
-			
-		case GET_USER_BY_ID:
-			return getUserById((Integer) params[0]);
-			
-		case GET_USER_CONTACTS_BY_USER_ID:
-			return getUserContactsByUserID((Integer) params[0]);
-			
-		case GET_USER_PROFILE:  //takes userID
-			return getUserProfile((Integer) params[0]);
-			
-		case GET_USERS_BY_EVENT_ID:
-			return getUsersByEventID((Integer) params[0]);
-			
-		default:
-			break;
+			case GET_ALL_ACTIVITY_CATEGORIES_AND_TYPES:
+				return getAllActivitiesCatType();
+				
+			case GET_ALL_USERS:
+				return getAllUsers();
+				
+			case GET_EVENT_BY_ID:
+				return getEventByID((Integer) params[0]);
+	
+			case GET_EVENTS_BY_LATITUDE_LONGITUDE_RADIUS:
+				return getEventByLatLongRad((Double) params[0], (Double) params[1], (Integer) params[2]);			
+					
+			case GET_EVENTS_BY_LOCATION_RADIUS_USING_LOCATION_ID:  //takes LocId and Radius (meters) and returns Events
+				return getEventByLocationRadiusUsingLocationID((Integer) params[0], (Integer) params[1]);
+				
+			case GET_EVENTS_BY_USER_ID:
+				return getEventsByUserID((Integer) params[0]);
+				
+			case GET_PLACE_3RD_PARTY_REF_BY_ID:
+				return getPlace3rdPartyRefByID((Integer) params[0]);
+				
+			case GET_PLACE_3RD_PARTY_REF_BY_TT_PLACE_ID:
+				return getPlace3rdPartyRefByTTPlaceID((Integer) params[0]);
+				
+			case GET_PLACE_BY_ID:
+				return getPlaceByID((Integer) params[0]);
+				
+			case GET_PLACES_BY_LATITUDE_LONGITUDE_RADIUS:
+				return getPlacesByLatitudeLongitudeRadius((Double) params[0], (Double) params[1], (Integer) params[2]);
+				
+			case GET_USER_BY_ID:
+				return getUserById((Integer) params[0]);
+				
+			case GET_USER_CONTACTS_BY_USER_ID:
+				return getUserContactsByUserID((Integer) params[0]);
+				
+			case GET_USER_PROFILE:  //takes userID
+				return getUserProfile((Integer) params[0]);
+				
+			case GET_USERS_BY_EVENT_ID:
+				return getUsersByEventID((Integer) params[0]);
+				
+			default:
+				break;
 		}
 
 		return null;
@@ -178,11 +174,10 @@ public class APICall extends AsyncTask<Object, String, String>{
 		return postData(jsonObject);
 	}
 
-
 	private String getUsersByEventID(int eventId) {
-			mURL = BASE_URL + "/events/" + eventId + "/users";
-			String response = getData();
-			return response;
+		mURL = BASE_URL + "/events/" + eventId + "/users";
+		String response = getData();
+		return response;
 	}
 
 
@@ -190,15 +185,13 @@ public class APICall extends AsyncTask<Object, String, String>{
 		mURL = BASE_URL + "/users/" + userId + "/profile";
 		String response = getData();
 		return response;
-}
-
-
-	private String getUserContactsByUserID(int userId) {
-			mURL = BASE_URL + "/users/contacts/" + userId;
-			String response = getData();
-			return response;
 	}
 
+	private String getUserContactsByUserID(int userId) {
+		mURL = BASE_URL + "/users/contacts/" + userId;
+		String response = getData();
+		return response;
+	}
 
 	private String getPlacesByLatitudeLongitudeRadius(double latitude, double longitude, int radius) {
 		mURL = BASE_URL + "/locations/place/" + latitude + "/" + longitude + "/" + radius;
@@ -206,13 +199,11 @@ public class APICall extends AsyncTask<Object, String, String>{
 		return response;
 	}
 
-
 	private String getPlaceByID(int placeId) {
 		mURL = BASE_URL + "/locations/place/" + placeId;
 		String response = getData();
 		return response;
 	}
-
 
 	private String getPlace3rdPartyRefByTTPlaceID(int TTplaceId) {
 		mURL = BASE_URL + "/locations/place/" + TTplaceId + "/place-synd";
@@ -220,20 +211,17 @@ public class APICall extends AsyncTask<Object, String, String>{
 		return response;
 	}
 
-
 	private String getPlace3rdPartyRefByID(int locId) {
 		mURL = BASE_URL + "/locations/place-synd/" + locId;
 		String response = getData();
 		return response;
 	}
 
-
 	private String getEventsByUserID(int userId) {
-			mURL = BASE_URL + "/events/user/" + userId;
-			String response = getData();
-			return response;
+		mURL = BASE_URL + "/events/user/" + userId;
+		String response = getData();
+		return response;
 	}
-
 
 	private String getEventByLocationRadiusUsingLocationID(int LocId,int radius) {
 		mURL = BASE_URL + "/events/location/" + LocId + "/" + radius;  //radius is in meters
@@ -243,18 +231,16 @@ public class APICall extends AsyncTask<Object, String, String>{
 
 
 	private String getEventByID(int eventId) {
-			mURL = BASE_URL + "/events/" + eventId;
-			String response = getData();
-			return response;
+		mURL = BASE_URL + "/events/" + eventId;
+		String response = getData();
+		return response;
 	}
-
 
 	private String getAllActivitiesCatType() {
 		mURL = BASE_URL + "/activity-types/all";
 		String response = getData();
 		return response;
 	}
-
 
 	private String createUserProfile(Integer userID, String firstName, String lastName, String gender, String birthdate, String nationality, String portraitUrl, String bio, String story) {
 		mURL = BASE_URL + "/users/profile";
@@ -278,7 +264,6 @@ public class APICall extends AsyncTask<Object, String, String>{
 		return postData(jsonObject);
 	}
 
-
 	private String createUser(String userName, String email, String password, String role, Double latitude, Double longitude) {
 		mURL = BASE_URL + "/users";
 		
@@ -298,33 +283,24 @@ public class APICall extends AsyncTask<Object, String, String>{
 		return postData(jsonObject);
 	}
 
-
 	private String getUserById(int userId) {
 		mURL = BASE_URL + "/users/" + userId;
 		String response = getData();
 		return response;
 	}
 
-
 	@Override
 	protected void onPostExecute(String result) {
 
 		JSONObject jsonObject = null;
-		
 		
 		try {
 			jsonObject = new JSONObject(result);
 			mCallback.onAsyncTaskComplete(jsonObject);
 		} catch (JSONException e) {
 			e.printStackTrace();
-		}
-		
-
-		
+		}		
 	}
-	
-	
-	
 	
 	public String createEvent(String from, String to, int placeId, String title, String description, int minSize, int maxSize, String rsvpTot, String waitListTot, int activityType) {
 		mURL = BASE_URL + "/events";
@@ -353,7 +329,6 @@ public class APICall extends AsyncTask<Object, String, String>{
 		mURL = BASE_URL + "/users";
 		String response = getData();
 		return response;
-		
 	}
 	
 	public String createPlace(String name, String description, String category, String url, double latitude, double longitude) {
@@ -436,7 +411,6 @@ public class APICall extends AsyncTask<Object, String, String>{
 		}
 		
 		return null;
-
 	}
 	
 	public String getData() {
@@ -462,9 +436,7 @@ public class APICall extends AsyncTask<Object, String, String>{
 		}
 		
 		return null;
-		
 	}
-
 
 }
 

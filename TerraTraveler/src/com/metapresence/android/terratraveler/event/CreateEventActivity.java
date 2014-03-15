@@ -93,97 +93,88 @@ public class CreateEventActivity extends Activity implements OnClickListener {
 	}
 	
 	@Override
-	public boolean onOptionsItemSelected(MenuItem item) 
-
-		{
-			switch (item.getItemId()) {
-				case android.R.id.home:
-					this.finish();
-					return true;
-			}
-			return super.onOptionsItemSelected(item);
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+			case android.R.id.home:
+				this.finish();
+				return true;
 		}
-
-	@Override
-	public void onClick(View v) {
-		// TODO Auto-generated method stub
-		
-		switch (v.getId()) {
-		case R.id.create_event_button:
-
-			mFrom = "2014-02-23 10:30:00.0";
-			mTo = "";
-			mPlaceId = 1;
-			mTitle = mTitleEditText.getText().toString();
-			mDescription = "Outside Lands: best music festival in S.F.";
-			mMinSize = 2;
-			mMaxSize = 50;
-			mRsvpTotal = "";
-			mWaitListTotal = "";
-			mActivityType = ActivityType.EVENT.getValue();
-			
-			APICall apiCall = new APICall(APIName.CREATE_EVENT, new APICallback() {
-				
-				@Override
-				public void onAsyncTaskComplete(JSONObject responseJSONObject) {
-					
-				}
-			});
-			
-			apiCall.execute(mFrom, mTo, mPlaceId, mTitle, mDescription , mMinSize, mMaxSize, mRsvpTotal, mWaitListTotal, mActivityType);
-			break;
-			
-		case R.id.create_event_location_iv:
-			String googlePlacesUrl = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + mLatitude + "," + mLongitude + "&radius=" + mRadius + "&sensor=false&key=AIzaSyDHbzx6uMk-QVOKMA2wEgnbFl2wzgeoavk";
-			APICall getPlacesApiCall = new APICall(APIName.GENERIC_GET, googlePlacesUrl, new APICallback() {
-				
-				@Override
-				public void onAsyncTaskComplete(JSONObject responseJSONObject) {
-					
-					Log.d("PLACES RESPONSE", responseJSONObject.toString());
-					
-					try {
-						JSONArray results = responseJSONObject.getJSONArray("results");
-						
-						for (int i=0; i < results.length(); i++) {
-							JSONObject resultObject = results.getJSONObject(i);
-							String name = resultObject.getString("name");
-							mLocationTitles.add(name);
-							Log.d("Name", name);
-							
-							JSONObject location = resultObject.getJSONObject("geometry").getJSONObject("location");				
-							mLatLngs.add(new LatLng(location.getDouble("lat"), location.getDouble("lng")));
-						}
-						
-					} catch (JSONException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-					
-				    mLocations = new String[mLocationTitles.size()];
-				    mLocations = mLocationTitles.toArray(mLocations);
-					
-					onCreateLocationDialog().show();
-
-				}
-			});
-			
-			getPlacesApiCall.execute();
-			
-			break;
-
-
-		default:
-			break;
-		}
-		
+		return super.onOptionsItemSelected(item);
 	}
 
+	@Override
+	public void onClick(View v) { // ############## STUB STUB STUB STUB ############
+		
+		switch (v.getId()) {
+			case R.id.create_event_button:
 	
+				mFrom = "2014-02-23 10:30:00.0";
+				mTo = "";
+				mPlaceId = 1;
+				mTitle = mTitleEditText.getText().toString();
+				mDescription = "Outside Lands: best music festival in S.F.";
+				mMinSize = 2;
+				mMaxSize = 50;
+				mRsvpTotal = "";
+				mWaitListTotal = "";
+				mActivityType = ActivityType.EVENT.getValue();
+				
+				APICall apiCall = new APICall(APIName.CREATE_EVENT, new APICallback() {
+					
+					@Override
+					public void onAsyncTaskComplete(JSONObject responseJSONObject) {
+						
+					}
+				});
+				
+				apiCall.execute(mFrom, mTo, mPlaceId, mTitle, mDescription , mMinSize, mMaxSize, mRsvpTotal, mWaitListTotal, mActivityType);
+				break;
+				
+			case R.id.create_event_location_iv:
+				String googlePlacesUrl = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + mLatitude + "," + mLongitude + "&radius=" + mRadius + "&sensor=false&key=AIzaSyDHbzx6uMk-QVOKMA2wEgnbFl2wzgeoavk";
+				APICall getPlacesApiCall = new APICall(APIName.GENERIC_GET, googlePlacesUrl, new APICallback() {
+					
+					@Override
+					public void onAsyncTaskComplete(JSONObject responseJSONObject) {
+						
+						Log.d("PLACES RESPONSE", responseJSONObject.toString());
+						
+						try {
+							JSONArray results = responseJSONObject.getJSONArray("results");
+							
+							for (int i=0; i < results.length(); i++) {
+								JSONObject resultObject = results.getJSONObject(i);
+								String name = resultObject.getString("name");
+								mLocationTitles.add(name);
+								Log.d("Name", name);
+								
+								JSONObject location = resultObject.getJSONObject("geometry").getJSONObject("location");				
+								mLatLngs.add(new LatLng(location.getDouble("lat"), location.getDouble("lng")));
+							}
+							
+						} catch (JSONException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						
+					    mLocations = new String[mLocationTitles.size()];
+					    mLocations = mLocationTitles.toArray(mLocations);
+						
+						onCreateLocationDialog().show();
+	
+					}
+				});
+				
+				getPlacesApiCall.execute();
+				
+				break;
+	
+			default:
+				break;
+		}
+	}
 
 	public Dialog onCreateLocationDialog() {
-		
-
 		
 	    AlertDialog.Builder builder = new AlertDialog.Builder(this);
 	    builder.setTitle("Pick Location")
@@ -200,11 +191,11 @@ public class CreateEventActivity extends Activity implements OnClickListener {
 		
 	    AlertDialog.Builder builder = new AlertDialog.Builder(this);
 	    builder.setTitle("Pick Activity Type")
-	           .setItems(mLocations, new DialogInterface.OnClickListener() {
-	               public void onClick(DialogInterface dialog, int which) {
-	               // The 'which' argument contains the index position
-	               // of the selected item
-	           }
+           .setItems(mLocations, new DialogInterface.OnClickListener() {
+               public void onClick(DialogInterface dialog, int which) {
+               // The 'which' argument contains the index position
+               // of the selected item
+           }
 	    });
 	    return builder.create();
 	}

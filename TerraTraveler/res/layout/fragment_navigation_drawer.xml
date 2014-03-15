@@ -8,4 +8,4 @@
     android:background="#00000000"
     tools:context="com.metapresence.android.terratraveler.NavigationDrawerFragment"
     android:padding="10dp"
-     />
+/>

@@ -34,11 +34,9 @@ public class TestFragment extends Fragment implements OnClickListener, APICallba
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		View view = inflater.inflate(R.layout.fragment_test, container, false);
 		
 		buttons = new ArrayList<Button>();	
-
 		
 		//connect buttons
 		createEventButton = (Button) view.findViewById(R.id.test_create_event);
@@ -63,7 +61,6 @@ public class TestFragment extends Fragment implements OnClickListener, APICallba
 	public void onClick(View v) {
 		
 		APICall apiCall;
-		// TODO Auto-generated method stub
 		switch (v.getId()) {
 
 		case (R.id.test_get_all_users):
@@ -106,9 +103,7 @@ public class TestFragment extends Fragment implements OnClickListener, APICallba
 			apiCall = new APICall(APIName.CREATE_PLACE, this);
 //			apiCall.execute();
 			break;
-
 		}
-
 	}
 
 	@Override

@@ -30,8 +30,6 @@ import android.widget.Toast;
  */
 public class NavigationDrawerFragment extends Fragment {
 	
-
-
     /**
      * Remember the position of the selected item.
      */
@@ -58,12 +56,11 @@ public class NavigationDrawerFragment extends Fragment {
     private View mFragmentContainerView;
 
     private int mCurrentSelectedPosition = 0;
-    private boolean mFromSavedInstanceState;
+    //private boolean mFromSavedInstanceState;
     private boolean mUserLearnedDrawer;
     
     private final String[] mNavDrawerListTitles = {"Create Event", "Test API Calls", "Find Users"};
     private final int[] mNavDrawerListPhotos = {R.drawable.plus, R.drawable.demo_button, R.drawable.friends};
-    
 
     public NavigationDrawerFragment() {
     }
@@ -79,7 +76,7 @@ public class NavigationDrawerFragment extends Fragment {
 
         if (savedInstanceState != null) {
             mCurrentSelectedPosition = savedInstanceState.getInt(STATE_SELECTED_POSITION);
-            mFromSavedInstanceState = true;
+            //mFromSavedInstanceState = true;
         }
 
         // Select either the default item (0) or the last selected item.
@@ -103,7 +100,6 @@ public class NavigationDrawerFragment extends Fragment {
             }
         });
         
-        
         CustomListAdapter adapter = new CustomListAdapter(mNavDrawerListTitles, mNavDrawerListPhotos);
         mDrawerListView.setAdapter(adapter);
         mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
@@ -122,25 +118,21 @@ public class NavigationDrawerFragment extends Fragment {
 
 		@Override
 		public int getCount() {
-			// TODO Auto-generated method stub
 			return mTitles.length;
 		}
 
 		@Override
 		public Object getItem(int position) {
-			// TODO Auto-generated method stub
 			return mTitles[position];
 		}
 
 		@Override
 		public long getItemId(int position) {
-			// TODO Auto-generated method stub
 			return 0;
 		}
 
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
-			// TODO Auto-generated method stub
 			LayoutInflater inflater = getActivity().getLayoutInflater();
 			View row;
 			row = inflater.inflate(R.layout.navigation_drawer_item, parent, false);
