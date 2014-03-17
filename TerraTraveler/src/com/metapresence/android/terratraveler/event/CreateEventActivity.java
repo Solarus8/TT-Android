@@ -25,7 +25,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.google.android.gms.maps.model.LatLng;
-import com.metapresence.android.terratraveler.CustomMapFragment;
+import com.metapresence.android.terratraveler.LocationMapFragment;
 import com.metapresence.android.terratraveler.R;
 import com.metapresence.android.terratraveler.api.APICall;
 import com.metapresence.android.terratraveler.api.APICallback;
@@ -68,9 +68,9 @@ public class CreateEventActivity extends Activity implements OnClickListener {
 		
 		pIntent = getIntent();
 		
-		mLatitude = pIntent.getDoubleExtra(CustomMapFragment.SELECTED_LATITUDE, 0);
-		mLongitude = pIntent.getDoubleExtra(CustomMapFragment.SELECTED_LONGITUDE, 0);
-		mRadius = pIntent.getIntExtra(CustomMapFragment.SELECTED_RADIUS, 0);
+		mLatitude = pIntent.getDoubleExtra(LocationMapFragment.SELECTED_LATITUDE, 0);
+		mLongitude = pIntent.getDoubleExtra(LocationMapFragment.SELECTED_LONGITUDE, 0);
+		mRadius = pIntent.getIntExtra(LocationMapFragment.SELECTED_RADIUS, 0);
 		
 		mCreateEventButton = (Button) findViewById(R.id.create_event_button);
 		mCreateEventButton.setOnClickListener(this);
@@ -86,8 +86,7 @@ public class CreateEventActivity extends Activity implements OnClickListener {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.add_event, menu);
+		//getMenuInflater().inflate(R.menu.add_event, menu);
 		
 		return true;
 	}
@@ -228,7 +227,6 @@ public class CreateEventActivity extends Activity implements OnClickListener {
 
 		@Override
 		public View getView(int position, View view, ViewGroup parent) {
-			
 			view = getLayoutInflater().inflate(R.layout.place_item, parent, false);
 			return view;
 		}

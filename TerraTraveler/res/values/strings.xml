@@ -2,14 +2,29 @@
 <resources>
 
     <string name="app_name">TerraTraveler</string>
-    <string name="title_section1">Section 1</string>
-    <string name="title_section2">Section 2</string>
-    <string name="title_section3">Section 3</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="action_example">Example action</string>
-    <string name="action_settings">Settings</string>
-    <string name="title_activity_add_event">AddEventActivity</string>
-    <string name="hello_world">Hello world!</string>
+    <string-array name="feature_views_array">
+	    <item>Map View</item>
+	    <item>Create Activity</item>
+	    <item>My Activities</item>
+	    <item>My Journal</item>
+	    <item>Contacts</item>
+	    <item>Settings</item>
+	</string-array>
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+    
+    <!-- Content Description -->
+    <string name="desc_list_item_icon">Item Icon</string>
+    
+    <!-- Nav Drawer List Item Icons -->
+    <!-- Keep them in order as the titles are in -->
+    <array name="nav_drawer_icons">
+        <item>@drawable/ic_home</item>
+        <item>@drawable/ic_people</item>
+        <item>@drawable/ic_photos</item>
+        <item>@drawable/ic_communities</item>
+        <item>@drawable/ic_pages</item>
+        <item>@drawable/ic_whats_hot</item>
+    </array>
 
 </resources>
